@@ -1,11 +1,51 @@
-"use client";
+import Image from "next/image";
+import { Button, Modal } from "react-bootstrap";
 
-export default function CardModal(){
+export default function CardModal(props){
+    const {show, setShow, title, fullDescription, stack, repoUrl, imgSrc, imgAlt} = props;
+
+    const spreadStack = stack.split(' • ');
+    const colors = [
+        "bg-primary",
+        "bg-success",
+        "bg-danger",
+        "bg-warning",
+        "bg-info",
+        "bg-secondary",
+        "bg-dark"
+    ];
+    
     return (<>
-        <dialog id="popup">
-            <h2>Popup Title</h2>
-            <p>This is a native HTML popup!</p>
-            <button onclick="document.getElementById('popup').close()">Close</button>
-        </dialog>
+        <Modal centered size="xl" show={show} onHide={() => setShow(false)}>
+          <Modal.Header closeButton>
+            <Modal.Title className="w-100 text-center"><b>{title}</b></Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="w-100 text-center">
+            <p>
+                {spreadStack.map((element, index) => (
+                    <span style={{ marginRight: "10px" }} key={index} className={`badge ${colors[index % colors.length]}`}>
+                        {element}
+                    </span>
+                ))}
+            </p>
+            <div className="container">
+              <div className="row">
+                <div dangerouslySetInnerHTML={{ __html: fullDescription}} className="col text-justify">
+                </div>
+                <div className="col">
+                  <a href={imgSrc} target="_blank">
+                    <Image src={imgSrc} width={2000} height={1000} alt={imgAlt} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </Modal.Body>
+          <Modal.Footer>
+            <a href={repoUrl} className="btn btn-outline-primary" target="_blank">View on GitHub</a>
+            <Button variant="secondary" onClick={() => setShow(false)}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
     </>)
 }

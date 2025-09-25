@@ -1,18 +1,6 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./globals.css";
-import Link from "next/link";
 import Image from "next/image";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   title: "Diogo Alpendre",
@@ -22,37 +10,39 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full">
-      <body className="h-full bg-black text-white">
-        <div className="flex flex-col min-h-screen">
+      <body className="relative h-screen w-screen text-white">
+        <Image
+          src="/img/coding_wallpaper-js.webp"
+          alt="Coding background"
+          fill
+          className="object-cover z-0 opacity-30"
+          priority
+        />
+        <div className="flex flex-col">
 
-          <nav className="fixed top-0 inset-x-0 z-50 h-14 backdrop-blur border-b border-white/10 bg-black/40">
+          <nav className="fixed top-0 inset-x-0 z-50 h-14 border-white/10 bg-cyan-950/40">
             <div className="mx-auto max-w-6xl px-4 sm:px-6 h-full flex items-center justify-between">
               <a
                 href="#"
-                className="font-semibold text-white no-underline hover:no-underline"
+                className="font-semibold text-white no-underline hover:underline underline-offset-2"
               >
-                Diogo Alpendre
+                <span className="font-bold text-xl">Diogo </span><span className="font-light text-xl">Alpendre</span>
               </a>
-
-              <ul className="flex items-center gap-6 text-sm h-full">
-                <li><Link className="hover:opacity-80 text-white !no-underline hover:underline-offset-4" href="/projects">Projects</Link></li>
-                <li><Link className="hover:opacity-80 text-white !no-underline hover:underline-offset-4" href="/about">About me</Link></li>
-              </ul>
 
               <a
                 className="hidden sm:inline-flex text-white h-8 items-center rounded-full border border-white/15 px-3 text-xs hover:bg-white/10"
                 href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
               >
-                Contact me
+                Talk to me
               </a>
             </div>
           </nav>
 
-          <main className="flex-1 pt-14 pb-16 overflow-y-auto max-h-[calc(100vh-3.5rem-4rem)]">
+          <main className="flex-1 pt-14 pb-16 overflow-y-auto">
             {children}
           </main>
-
-          <footer className="fixed bottom-0 inset-x-0 border-t border-white/10 bg-black/40 py-4 flex items-center justify-center gap-6 z-50">
+          
+          <footer className="fixed bottom-0 inset-x-0 border-t border-white/10 bg-black py-4 flex items-center justify-center gap-6 z-50">
             <a
               className="flex items-center gap-2 text-white !no-underline hover:underline-offset-4"
               href={process.env.NEXT_PUBLIC_GITHUB}
@@ -72,7 +62,6 @@ export default function RootLayout({ children }) {
               Linkedin
             </a>
           </footer>
-
         </div>
       </body>
     </html>

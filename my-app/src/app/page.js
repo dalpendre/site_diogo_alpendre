@@ -1,45 +1,115 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import {projects} from "@/app/data/projects";
+import Card from "./projects/card";
 
 export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-center">
-        <Image
-          className="dark"
-          src="/img/profile_pic.jpeg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+
+    return (
+        <>
+            <div className="font-sans flex flex-col p-8 pb-20 gap-16 sm:p-20">
+                <main className="flex flex-col gap-8 items-center w-full overflow-auto">
+                    <div className="bio-text text-center">
+                        <div className="container">
+                            <div className="row align-items-center">
+                                <div className="col-sm-auto">
+                                    <Image
+                                        className="rounded-full brightness-120 opacity-100"
+                                        src="/img/profile_pic.jpeg"
+                                        alt="Next.js logo"
+                                        width={180}
+                                        height={180}
+                                        priority
+                                    />
+                                </div>
+                                <div className="col-sm-auto">
+                                    <h1><b><b>Diogo</b></b> Alpendre</h1>
+                                    <h4 className="bio-text text-cyan-700">Full-Stack Developer</h4>
+                                    <p><b>2 years</b> of professional experience</p>
+                                    <div className="row">
+                                        <div className="col-sm-auto">
+                                            <Image 
+                                                className="brightness-120 opacity-100"
+                                                src="/img/js-logo.png"
+                                                alt="Javascript logo"
+                                                width={50}
+                                                height={50}
+                                                priority
+                                            />
+                                        </div>
+                                        <div className="col-sm-auto">
+                                            <Image 
+                                                className="brightness-120 opacity-100"
+                                                src="/img/react.png"
+                                                alt="Next.js logo"
+                                                width={50}
+                                                height={50}
+                                                priority
+                                            />
+                                        </div>
+                                        <div className="col-sm-auto">
+                                            <Image 
+                                                className="brightness-120 opacity-100"
+                                                src="/img/java-logo-v2.png"
+                                                alt="Java logo"
+                                                width={75}
+                                                height={75}
+                                                priority
+                                            />
+                                        </div>
+                                        <div className="col-sm-auto">
+                                            <Image 
+                                                className="brightness-120 opacity-100"
+                                                src="/img/spring-boot-rect-v2.png"
+                                                alt="Spring Boot logo"
+                                                width={100}
+                                                height={100}
+                                                priority
+                                            />
+                                        </div>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="container">
+                              <div className="row align-items-left">
+                                <br/>
+                                <h4 className="relative z-50 cursor-pointer text-left text-white no-underline"><b>👨‍💻 About me</b></h4>
+                                <p className="text-justify">
+                                    I am a software developer with nearly two years of experience specializing in 
+                                    <span className="font-bold"> full-stack development</span> using 
+                                    <span className="font-bold"> React</span> and <span className="font-bold"> Spring Boot</span>.
+                                </p>
+                                <p className="text-justify">
+                                    Over the past 2 years, I have contributed to a critical software system 
+                                    for <span className="font-bold">organ transplantation management</span> in Saudi Arabia, 
+                                    supporting both <b>donation</b> and <b>transplantation</b> processes.
+                                </p>
+                                <p className="text-justify">
+                                    My work focuses on creating efficient, user-friendly applications that help streamline 
+                                    complex medical operations, ensuring smooth coordination between healthcare providers 
+                                    and transplant organizations.
+                                </p>
+                              </div>
+                              <div className="row align-items-left">
+                                <div className="col-sm-auto">
+                                    <h4 className="relative z-50 cursor-pointer text-left text-white no-underline">👨‍💻 My Projects</h4>
+                                </div>
+                              </div>
+                              <div className="row align-items-left">
+                                {
+                                  projects.map((project) => (
+                                  <div className="col-sm-3 mb-3" key={project.id}>
+                                    <Card title={project.title} description={project.description} fullDescription={project.fullDescription} stack={project.stack} repoUrl={project.repoUrl} 
+                                      imgSrc={project.imgSrc} imgAlt={project.imgAlt} />
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </>
+    )
 }
