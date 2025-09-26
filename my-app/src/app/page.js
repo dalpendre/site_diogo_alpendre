@@ -15,7 +15,7 @@ export default function Home() {
                             <div className="row align-items-center">
                                 <div className="col-sm-auto">
                                     <Image
-                                        className="rounded-full brightness-120 opacity-100"
+                                        className="rounded-full brightness-100 opacity-100"
                                         src="/img/profile_pic.jpeg"
                                         alt="Next.js logo"
                                         width={180}
@@ -100,8 +100,8 @@ export default function Home() {
                                 {
                                   projects.map((project) => (
                                   <div className="col-sm-3 mb-3" key={project.id}>
-                                    <Card title={project.title} description={project.description} fullDescription={project.fullDescription} stack={project.stack} repoUrl={project.repoUrl} 
-                                      imgSrc={project.imgSrc} imgAlt={project.imgAlt} />
+                                    <Card title={project.title} description={project.description} fullDescription={project.fullDescription} stack={project.stack}
+                                        repoUrl={project.repoUrl} imgSrc={project.imgSrc} imgAlt={project.imgAlt} year={project.year} />
                                   </div>
                                 ))}
                               </div>

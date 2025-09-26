@@ -41,7 +41,18 @@ export default function CardModal(props){
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <a href={repoUrl} className="btn btn-outline-primary" target="_blank">View on GitHub</a>
+            <a 
+              href={repoUrl} 
+              className="btn" 
+              style={{ 
+                color: "#1E3A8A", // slightly darker blue text
+                border: "1px solid #1E3A8A",
+                backgroundColor: "#F3F4F6" // light gray background
+              }}
+              target="_blank"
+            >
+              View on GitHub
+            </a>
             <Button variant="secondary" onClick={() => setShow(false)}>
               Close
             </Button>
